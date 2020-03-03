@@ -1,0 +1,36 @@
+{
+  "name": "trajectory-app",
+  "version": "1.0.0",
+  "description": "Web Application for trajectory tools",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "build": "tsc -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mule1138/trajectory-app.git"
+  },
+  "keywords": [
+    "trajectory",
+    "esri",
+    "jsapi",
+    "wgs84",
+    "ecef",
+    "gis",
+    "webmap"
+  ],
+  "author": "Kevin Mueller",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mule1138/trajectory-app/issues"
+  },
+  "homepage": "https://github.com/mule1138/trajectory-app#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/arcgis-js-api": "^4.14.0",
+    "@types/chai": "^4.2.10",
+    "dojo-typings": "^1.11.9",
+    "typescript": "^3.8.3"
+  }
+}
