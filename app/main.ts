@@ -1,5 +1,4 @@
 import EsriMap from "esri/Map";
-import MapView from "esri/views/MapView";
 import SceneView from "esri/views/SceneView";
 import Camera from "esri/Camera";
 
