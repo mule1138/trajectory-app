@@ -7,12 +7,13 @@
       "jsx": "react",
       "jsxFactory": "tsx",
       "target": "es6",
+      "outDir": "app",
       "experimentalDecorators": true,
       "preserveConstEnums": true,
       "suppressImplicitAnyIndexErrors": true
     },
     "include": [
-      "./app/*"
+      "./src/*", "src/main.ts"
     ],
     "exclude": [
       "node_modules"
