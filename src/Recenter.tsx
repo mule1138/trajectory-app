@@ -33,7 +33,7 @@ const CSS = {
 
 @subclass("esri.widgets.Recenter")
 class Recenter extends declared(Widget) {
-    constructor() {
+    constructor(params?: any) {
         super();
         this._onViewChange = this._onViewChange.bind(this);
     }
