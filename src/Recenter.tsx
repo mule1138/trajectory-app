@@ -76,7 +76,7 @@ class Recenter extends declared(Widget) {
     }
 
     private _onViewChange() {
-        let {interacting, center, scale} = this.view;
+        let { interacting, center, scale } = this.view;
         this.state = {
             x: center.x,
             y: center.y,

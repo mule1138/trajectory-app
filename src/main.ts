@@ -1,12 +1,15 @@
+import Camera from "esri/Camera";
 import EsriMap from "esri/Map";
 import MapView from "esri/views/MapView";
+import SceneView from "esri/views/SceneView";
 import VectorTileLayer from "esri/layers/VectorTileLayer";
 
 import Recenter from "./Recenter";
 
 // *** GLOBAL VARS *** //
 let map: EsriMap;
-let view: MapView
+// let view: MapView;
+let view: SceneView;
 let recenter: Recenter;
 
 // *** DO STUFF *** //
@@ -23,12 +26,26 @@ function init() {
     });
     map.add(tileLayer);
 
-    view = new MapView({
+    view = new SceneView({
         map: map,
         container: "viewDiv",
-        center: [-100.33, 43.69],
-        zoom: 4
+        camera: new Camera({
+            position: {
+                longitude: -118.244,
+                latitude: 33.62,
+                z: 100000
+            },
+            heading: 0,
+            tilt: 20
+        })
     });
+
+    // view = new MapView({
+    //     map: map,
+    //     container: "viewDiv",
+    //     center: [-100.33, 43.69],
+    //     zoom: 4
+    // });
 
     view.when(() => {
         recenter = new Recenter({
