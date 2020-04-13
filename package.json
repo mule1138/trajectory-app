@@ -29,7 +29,7 @@
   "dependencies": {},
   "devDependencies": {
     "@types/arcgis-js-api": "^4.14.0",
-    "@types/chai": "^4.2.10",
+    "@types/chai": "4.2.1",
     "dojo-typings": "^1.11.9",
     "typescript": "^3.8.3"
   }

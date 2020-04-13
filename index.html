@@ -1,34 +1,49 @@
 <html>
-  <head>
+
+<head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no" />
     <title>ArcGIS JSAPI 4.14 TypeScript Demo</title>
     <style>
-      html,
-      body,
-      #viewDiv {
-        padding: 0;
-        margin: 0;
-        height: 100%;
-        width: 100%;
-      }
+        html,
+        body,
+        #viewDiv {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        .recenter-tool {
+            padding: 2em;
+            width: 150px;
+            height: 50px;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .recenter-tool>p {
+            margin: 0;
+        }
     </style>
     <link rel="stylesheet" href="https://js.arcgis.com/4.14/esri/themes/light/main.css">
     <script>
-      var locationPath = location.pathname.replace(/\/[^/]*$/, "");
-      window.dojoConfig = {
-        packages: [
-          {
-            name: "app",
-            location: locationPath + "/app"
-          }
-        ]
-      };
+        let locationPath = location.pathname.replace(/\/[^/]*$/, "");
+        window.dojoConfig = {
+            packages: [
+                {
+                    name: "app",
+                    location: locationPath + "/app"
+                }
+            ]
+        };
     </script>
     <script src="https://js.arcgis.com/4.14"></script>
-  </head>
-  <body>
+</head>
+
+<body>
     <div id="viewDiv"></div>
     <script>require(["app/main"]);</script>
-  </body>
+</body>
+
 </html>

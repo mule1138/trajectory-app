@@ -6,15 +6,17 @@
       "sourceMap": true,
       "jsx": "react",
       "jsxFactory": "tsx",
-      "target": "es6",
+      "target": "es5",
+      "outDir": "app",
       "experimentalDecorators": true,
       "preserveConstEnums": true,
       "suppressImplicitAnyIndexErrors": true
     },
     "include": [
-      "./app/*"
+      "./src/*"
     ],
     "exclude": [
-      "node_modules"
+      "node_modules",
+      "./app/*"
     ]
   }
