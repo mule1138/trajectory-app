@@ -9,18 +9,21 @@ import * as watchUtils from "esri/core/watchUtils";
 import { renderable, tsx } from "esri/widgets/support/widget";
 
 import Point = require("esri/geometry/Point");
-import MapView = require("esri/views/SceneView");
+import SceneView = require("esri/views/SceneView");
 
 type Coordinates = Point | number[] | any;
 
 interface Center {
     x: number,
-    y: number
+    y: number,
+    latitude: number,
+    longitude: number
 }
 
 interface State extends Center {
     interacting: boolean,
-    scale: number
+    scale: number,
+    cameraHeight: number
 }
 
 interface Style {
@@ -45,7 +48,7 @@ class Recenter extends declared(Widget) {
 
     @property()
     @renderable()
-    view: MapView;
+    view: SceneView;
 
     @property()
     @renderable()
@@ -56,7 +59,7 @@ class Recenter extends declared(Widget) {
     state: State;
 
     render() {
-        const { x, y, scale } = this.state;
+        const { x, y, latitude, longitude, scale, cameraHeight } = this.state;
         const styles: Style = {
             textShadow: this.state.interacting ? '-1px 0 red, 0 1px red, 1px 0 red, 0 -1px red' : ''
         };
@@ -67,21 +70,24 @@ class Recenter extends declared(Widget) {
                 class={CSS.base}
                 styles={styles}
                 onclick={this._defaultCenter}>
-                <p>x: {Number(x).toFixed(3)}</p>
-                <p>y: {Number(y).toFixed(3)}</p>
-                <p>scale: {Number(scale).toFixed(5)}</p>
+                <p>lat: {Number(latitude).toFixed(3)}</p>
+                <p>lon: {Number(longitude).toFixed(3)}</p>
+                <p>Camera Alt: {Number(cameraHeight).toFixed(3)}</p>
             </div>
 
         return retElement;
     }
 
     private _onViewChange() {
-        let { interacting, center, scale } = this.view;
+        let { interacting, center, scale, camera } = this.view;
         this.state = {
             x: center.x,
             y: center.y,
+            latitude: center.latitude,
+            longitude: center.longitude,
             interacting,
-            scale
+            scale,
+            cameraHeight: camera.position.z
         };
     }
 

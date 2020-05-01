@@ -1,16 +1,18 @@
 import Camera from "esri/Camera";
 import EsriMap from "esri/Map";
-import MapView from "esri/views/MapView";
+// import MapView from "esri/views/MapView";
 import SceneView from "esri/views/SceneView";
 import VectorTileLayer from "esri/layers/VectorTileLayer";
 
 import Recenter from "./Recenter";
+import ISSTrack from "./ISSTrack";
 
 // *** GLOBAL VARS *** //
 let map: EsriMap;
 // let view: MapView;
 let view: SceneView;
 let recenter: Recenter;
+let issTrack: ISSTrack;
 
 // *** DO STUFF *** //
 init();
@@ -32,11 +34,11 @@ function init() {
         camera: new Camera({
             position: {
                 longitude: -118.244,
-                latitude: 33.62,
+                latitude: 33.7,
                 z: 100000
             },
             heading: 0,
-            tilt: 20
+            tilt: 10
         })
     });
 
@@ -52,6 +54,12 @@ function init() {
             view: view,
             initialCenter: [-100.33, 43.69]
         });
-        view.ui.add(recenter, "top-right");
+
+        issTrack = new ISSTrack({
+            view: view,
+        });
+
+        // view.ui.add(recenter, "top-right");
+        view.ui.add(issTrack, "top-right");
     });
 }

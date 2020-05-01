@@ -25,6 +25,18 @@
         .recenter-tool>p {
             margin: 0;
         }
+
+        .iss-track {
+            padding: 2em;
+            width: 150px;
+            height: 50px;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .iss-track>p {
+            margin: 0;
+        }
     </style>
     <link rel="stylesheet" href="https://js.arcgis.com/4.14/esri/themes/light/main.css">
     <script>
@@ -39,11 +51,13 @@
         };
     </script>
     <script src="https://js.arcgis.com/4.14"></script>
+    <!-- <script src="app/bundle.js"></script> -->
 </head>
 
 <body>
     <div id="viewDiv"></div>
     <script>require(["app/main"]);</script>
+    <!-- <script>require(["main"]);</script> -->
 </body>
 
 </html>
