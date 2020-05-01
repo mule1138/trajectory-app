@@ -4,8 +4,8 @@ import EsriMap from "esri/Map";
 import SceneView from "esri/views/SceneView";
 import VectorTileLayer from "esri/layers/VectorTileLayer";
 
-import Recenter from "./Recenter";
-import ISSTrack from "./ISSTrack";
+import Recenter from "./widgets/Recenter/Recenter";
+import ISSTrack from "./widgets/ISSTrack/ISSTrack";
 
 // *** GLOBAL VARS *** //
 let map: EsriMap;
