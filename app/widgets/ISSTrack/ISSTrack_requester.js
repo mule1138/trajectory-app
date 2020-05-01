@@ -5,7 +5,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     result["default"] = mod;
     return result;
 };
-define(["require", "exports", "./ISSTrack_config", "ecef-utilities", "esri/Graphic", "esri/request", "esri/symbols/PointSymbol3D"], function (require, exports, ISSTrack_config_1, ECEFUtils, Graphic, esriRequest, PointSymbol3D) {
+define(["require", "exports", "./ISSTrack_config", "../../libs/ecef-utilities/ecef-utilities", "esri/Graphic", "esri/request", "esri/symbols/PointSymbol3D"], function (require, exports, ISSTrack_config_1, ECEFUtils, Graphic, esriRequest, PointSymbol3D) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     ECEFUtils = __importStar(ECEFUtils);

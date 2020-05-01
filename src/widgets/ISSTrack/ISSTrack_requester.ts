@@ -1,6 +1,6 @@
 import { config } from "./ISSTrack_config";
-import * as ECEFUtils from "ecef-utilities";
-import { ECEFPoint } from "ecef-utilities";
+import * as ECEFUtils from "../../libs/ecef-utilities/ecef-utilities";
+import { ECEFPoint } from "../../libs/ecef-utilities/ecef-utilities";
 
 // import ECEFUtils = require("../node_modules/ecef-utilities/dist/ecef_uilts");
 

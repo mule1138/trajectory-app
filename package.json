@@ -26,9 +26,7 @@
     "url": "https://github.com/mule1138/trajectory-app/issues"
   },
   "homepage": "https://github.com/mule1138/trajectory-app#readme",
-  "dependencies": {
-    "ecef-utilities": "file:../ecef-utilities"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/arcgis-js-api": "^4.14.0",
     "@types/chai": "4.2.1",
