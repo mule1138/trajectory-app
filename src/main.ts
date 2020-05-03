@@ -57,9 +57,10 @@ function init() {
 
         issTrack = new ISSTrack({
             view: view,
+            map: map
         });
 
-        // view.ui.add(recenter, "top-right");
+        view.ui.add(recenter, "top-right");
         view.ui.add(issTrack, "top-right");
     });
 }

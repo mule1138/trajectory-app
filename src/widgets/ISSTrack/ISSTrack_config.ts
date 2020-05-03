@@ -6,20 +6,20 @@ export const config = {
         "position": "v1/satellites/25544",
         "positions": "v1/satellites/25544/positions"
     },
-    "symbols": {
-        "observedPoint": {
-            "type": "point-3d",
-            "symbolLayers": [
+    symbols: {
+        observedPoint: {
+            type: "point-3d",
+            symbolLayers: [
                 {
-                    "type": "object",
-                    "resource": {
-                        "primitive": "sphere"
+                    type: "object",
+                    height: 10,
+                    width: 10,
+                    depth: 10,
+                    resource: {
+                        primitive: "sphere"
                     },
-                    "height": 10,
-                    "width": 10,
-                    "depth": 10,
-                    "material": {
-                        "color": "green"
+                    material: {
+                        color: "green"
                     }
                 }
             ]

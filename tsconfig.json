@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "moduleResolution": "node",
     "module": "amd",
     "noImplicitAny": true,
     "esModuleInterop": true,
@@ -11,8 +10,7 @@
     "outDir": "app",
     "experimentalDecorators": true,
     "preserveConstEnums": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "resolveJsonModule": true
+    "suppressImplicitAnyIndexErrors": true
   },
   "include": [
     "./src/**/*"

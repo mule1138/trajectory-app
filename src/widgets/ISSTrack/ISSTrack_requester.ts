@@ -2,11 +2,10 @@ import { config } from "./ISSTrack_config";
 import * as ECEFUtils from "../../libs/ecef-utilities/ecef-utilities";
 import { ECEFPoint } from "../../libs/ecef-utilities/ecef-utilities";
 
-// import ECEFUtils = require("../node_modules/ecef-utilities/dist/ecef_uilts");
-
 import Graphic = require("esri/Graphic");
 import esriRequest = require("esri/request");
-import PointSymbol3D = require("esri/symbols/PointSymbol3D");
+import { Point } from "esri/geometry";
+import { SimpleMarkerSymbol } from "esri/symbols";
 
 export function makeInitialRequest(): Promise<Graphic[]> {
     // Get the current timestamp as a unix time (to the nearest second, not millisecond)
@@ -14,7 +13,7 @@ export function makeInitialRequest(): Promise<Graphic[]> {
 
     // Build out list of 10 timestamps starting from current time and working
     // backwards in steps defined by the update interval
-    const timestamps = this.generateTimestampList(now, config.update_interval, 10);
+    const timestamps = generateTimestampList(now, config.update_interval, 10);
 
     // Build the URL for the positions request
     const requestUrl = `${config.url}/${config.endpoints.positions}`;
@@ -27,7 +26,7 @@ export function makeInitialRequest(): Promise<Graphic[]> {
     };
 
     return esriRequest(requestUrl, requestOptions).then(response => {
-        return this.handleResponse(response.data);
+        return handleResponse(response.data);
     });
 }
 
@@ -49,7 +48,7 @@ export function requestPosition(timestamp?: number): Promise<Graphic> {
     };
 
     return esriRequest(requestUrl, requestOptions).then(response => {
-        const graphics = this.handleResponse(response.data);
+        const graphics = handleResponse(response.data);
         return graphics[0];
     });
 }
@@ -60,12 +59,12 @@ function handleResponse(response: any): Graphic[] {
     let feature: Graphic;
     if (Array.isArray(response)) {
         response.forEach(element => {
-            feature = this.buildFeature(element);
+            feature = buildFeature(element);
             features.push(feature);
             feature = null;
         });
     } else {
-        feature = this.buildFeature(response);
+        feature = buildFeature(response);
         features.push(feature);
     }
 
@@ -73,22 +72,20 @@ function handleResponse(response: any): Graphic[] {
 }
 
 function buildFeature(issData: any): Graphic {
-    const issPoint = {
-        type: "point",
+    const issPoint: Point = new Point({
         latitude: issData.latitude,
         longitude: issData.longitude,
         z: issData.altitude * 1000,
-        hasZ: true
-    };
+    });
 
     // Generate ECEF points
-    const ecefPt: ECEFUtils.ECEFPoint = ECEFUtils.LLAToECEF({
+    const ecefPt: ECEFPoint = ECEFUtils.LLAToECEF({
         lat: issData.latitude,
         lon: issData.longitude,
         alt: issData.altitude * 1000
     });
 
-    const symbol = PointSymbol3D.fromJSON(config.symbols.observedPoint);
+    const symbol = buildObservedPointSymbol();
 
     const feature = new Graphic({
         geometry: issPoint,
@@ -117,4 +114,45 @@ function generateTimestampList(firstTime: number, interval: number = 1, length: 
     }
 
     return timestamps;
+}
+
+// function buildObservedPointSymbol(): PointSymbol3D {
+//     const symbol: PointSymbol3D = new PointSymbol3D({
+//         symbolLayers: [
+//             new ObjectSymbol3DLayer({
+//                 anchor: "origin",
+//                 depth: 10,
+//                 height: 10,
+//                 resource: { primitive: "sphere" },
+//                 width: 10,
+//                 material: { color: [191, 191, 0, 1] }
+//             })]
+//     });
+
+//     return symbol;
+// }
+
+function buildObservedPointSymbol(): SimpleMarkerSymbol {
+    const symbol: SimpleMarkerSymbol = new SimpleMarkerSymbol({
+        outline: {
+            color: [36, 36, 36, 1]
+        },
+        size: 10,
+        color: [230, 230, 0, 0.52]
+    });
+
+    return symbol;
+}
+
+function buildCurrentPointSymbol(): SimpleMarkerSymbol {
+    const symbol: SimpleMarkerSymbol = new SimpleMarkerSymbol({
+        style: "diamond",
+        outline: {
+            color: [36, 36, 36, 1]
+        },
+        size: 10,
+        color: [230, 230, 0, 0.52]
+    });
+
+    return symbol;
 }
